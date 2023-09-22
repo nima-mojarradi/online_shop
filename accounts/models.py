@@ -12,8 +12,7 @@ class CustomUser(AbstractUser):
         return self.username
     
 class Address(models.Model):
-    location = models.CharField(max_length=255)
-    #TODO
+    location = models.TextField()
 
 class Cart(models.Model):
     user = models.OneToOneField("CustomUser", on_delete=models.CASCADE, unique=True)
