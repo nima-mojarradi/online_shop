@@ -7,12 +7,14 @@ from rest_framework.authentication import get_authorization_header
 from .serializer import UserSerializer
 from .models import CustomUser
 from rest_framework.exceptions import AuthenticationFailed
+from .utils import send_otp_code
 
 
 class RegisterUser(APIView):
     def post(self,request):
         serializer=UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        print(send_otp_code(request,phone_number='09152593858'))
         serializer.save()
         return Response(serializer.data)
     
