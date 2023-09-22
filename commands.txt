@@ -1,0 +1,2 @@
+docker build --tag online_shop .
+ducker run --publish 8000:8000 online_shop
