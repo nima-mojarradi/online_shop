@@ -25,9 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
-
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+DEBUG = True
 
 load_dotenv()
 # Application definition
@@ -43,7 +41,7 @@ INSTALLED_APPS = [
     'products',
     'shopping_cart',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
