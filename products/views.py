@@ -26,7 +26,6 @@ class ProductsSearch(ListAPIView):
         brand = self.request.query_params.get('brand', '')
         category = self.request.query_params.get('category', '')
         queryset = self.queryset
-        print(self.request.query_params)
         if title:
             queryset = queryset.filter(Q(title__icontains=title))
         if brand:
