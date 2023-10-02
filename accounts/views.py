@@ -14,7 +14,6 @@ class RegisterUser(APIView):
     def post(self,request):
         serializer=UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        print(send_otp_code(request,phone_number='09152593858'))
         serializer.save()
         return Response(serializer.data)
     
