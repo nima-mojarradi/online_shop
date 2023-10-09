@@ -2,9 +2,10 @@ import jwt
 import datetime
 from rest_framework import exceptions
 
-def create_access_token(id):
+def create_access_token(id, jti):
     """Create an access token for the given user."""
     return jwt.encode({
+        'jti':jti,
         'user_id':id,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=10),
         'iat': datetime.datetime.utcnow()
@@ -20,9 +21,10 @@ def decode_access_token(token):
         raise exceptions.AuthenticationFailed('unauthenticated')
 
 
-def create_refresh_token(id):
+def create_refresh_token(id, jti):
     """Create an access token for the given user."""
     return jwt.encode({
+        'jti': jti,
         'user_id':id,
         'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=15),
         'iat': datetime.datetime.utcnow()
