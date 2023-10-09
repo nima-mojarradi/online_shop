@@ -150,6 +150,9 @@ REST_FRAMEWORK = {
     'PAGE_SIZE':1
 }
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -158,5 +161,9 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "PASSWORD": "mysecret"
         }
+    },
+        "auth": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://django@localhost:6379/1",
     }
 }
