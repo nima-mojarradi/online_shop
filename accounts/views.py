@@ -8,6 +8,7 @@ from .serializer import UserSerializer
 from .models import CustomUser
 from rest_framework.exceptions import AuthenticationFailed
 from .utils import send_otp_code
+from uuid import uuid4
 
 
 class RegisterUser(APIView):
@@ -28,8 +29,10 @@ class LoginUser(APIView):
         if not user.check_password(request.data['password']):
             raise APIException('Invalid credentials')
 
-        access_token = create_access_token(user.id)
-        refresh_token = create_refresh_token(user.id)
+        jti = uuid4().hex
+
+        access_token = create_access_token(user.id, jti)
+        refresh_token = create_refresh_token(user.id, jti)
 
         response = Response()
         response.set_cookie(key='refresh_token', value=refresh_token, httponly=True)
